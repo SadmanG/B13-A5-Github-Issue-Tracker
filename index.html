@@ -14,6 +14,61 @@
     <title>Github Issue Tracker</title>
 </head>
 <body>
-    Hello Assignment 5!
+    <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+  <!-- Card Container -->
+  <div class="card w-full max-w-md bg-base-100 shadow-2xl rounded-lg p-8 border border-gray-100">
+    
+    <!-- Logo & Header -->
+    <div class="flex flex-col items-center mb-8">
+      <div class="w-20 h-20 mb-4">
+        <!-- GitHub Logo Placeholder -->
+         <img src="assets/github-logo.png" alt="">
+      </div>
+      <h1 class="text-2xl font-bold text-gray-800">GitHub Issues Tracker</h1>
+      <p class="text-gray-500 text-sm mt-1">Sign in to manage your issues</p>
+    </div>
+
+    <!-- Form -->
+    <form>
+      <!-- Username Field -->
+      <div class="form-control w-full mb-4">
+        <label class="label">
+          <span class="label-text font-semibold text-gray-700">Username</span>
+        </label>
+        <input type="text" placeholder="Enter Username" class="input input-bordered w-full focus:outline-none focus:border-primary" />
+        <label class="label">
+          <span class="label-text-alt text-secondary font-medium">Default: admin</span>
+        </label>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-control w-full mb-6">
+        <label class="label">
+          <span class="label-text font-semibold text-gray-700">Password</span>
+        </label>
+        <input type="password" placeholder="Enter Password" class="input input-bordered w-full focus:outline-none focus:border-primary" />
+        <label class="label">
+          <span class="label-text-alt text-secondary font-medium">Default: admin123</span>
+        </label>
+      </div>
+
+      <!-- Sign In Button -->
+      <button class="btn btn-primary w-full normal-case text-lg shadow-lg mb-8">Sign In</button>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider text-xs text-gray-400 font-light px-4">OR</div>
+
+    <!-- Demo Credentials Footer -->
+    <div class="mt-4 p-6 bg-gray-50 rounded-lg text-center border border-gray-100">
+      <p class="text-xs text-gray-400 mb-3 uppercase tracking-widest">Demo Credentials:</p>
+      <p class="text-gray-700 text-sm">
+        <span class="font-bold">Username:</span> admin<br>
+        <span class="font-bold">Password:</span> admin123
+      </p>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
