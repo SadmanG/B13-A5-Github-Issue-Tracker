@@ -11,7 +11,7 @@
     <!-- Font Awesome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Github Issue Tracker</title>
+    <title>Github Issue Tracker | Sign-In</title>
 </head>
 <body>
     <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -35,7 +35,7 @@
         <label class="label">
           <span class="label-text font-semibold text-gray-700">Username</span>
         </label>
-        <input type="text" placeholder="Enter Username" class="input input-bordered w-full focus:outline-none focus:border-primary" />
+        <input id="username-input" type="text" placeholder="Enter Username" class="input input-bordered w-full focus:outline-none focus:border-primary" />
         <label class="label">
           <span class="label-text-alt text-secondary font-medium">Default: admin</span>
         </label>
@@ -46,15 +46,16 @@
         <label class="label">
           <span class="label-text font-semibold text-gray-700">Password</span>
         </label>
-        <input type="password" placeholder="Enter Password" class="input input-bordered w-full focus:outline-none focus:border-primary" />
+        <input id="password-input" type="password" placeholder="Enter Password" class="input input-bordered w-full focus:outline-none focus:border-primary" />
         <label class="label">
           <span class="label-text-alt text-secondary font-medium">Default: admin123</span>
         </label>
       </div>
 
-      <!-- Sign In Button -->
-      <button class="btn btn-primary w-full normal-case text-lg shadow-lg mb-8">Sign In</button>
     </form>
+
+    <!-- Sign In Button -->
+      <button id="sign-in-btn" class="btn btn-primary w-full text-lg shadow-lg mb-8">Sign In</button>
 
     <!-- Divider -->
     <div class="divider text-xs text-gray-400 font-light px-4">OR</div>
@@ -70,5 +71,6 @@
 
   </div>
 </div>
+<script src="scripts/login.js"></script>
 </body>
 </html>
