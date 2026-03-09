@@ -1,0 +1,44 @@
+const loadCards=()=>{
+    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues") // Promise of Response
+    .then(res=> res.json()) // Promise of json data
+    .then(json => displayCard(json.data));
+};
+
+const displayCard = (cards) =>{
+    // 1. Get the container & empty
+    const cardContainer = document.getElementById("card-container");
+    cardContainer.innerHTML = "";
+
+    // 2. Get into every cards
+    for(let card of cards){
+        //3. Create Element
+        const cardDiv = document.createElement("div");
+        cardDiv.innerHTML = `
+        <div class="card bg-base-100 border border-base-300 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="card-body p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="badge badge-success badge-outline badge-xs p-2">
+                                <span class="w-2 h-2 rounded-full bg-success mr-1"></span>
+                            </span>
+                            <span class="badge badge-error badge-outline text-[10px] h-5">${card.priority}</span>
+                        </div>
+                        <h3 class="font-bold text-sm leading-tight mb-2">${card.title}</h3>
+                        <p class="text-xs text-base-content/70 line-clamp-2 mb-4">
+                            ${card.description}
+                        </p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="badge badge-error badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full bg-error"></span> ${card.labels[0]}</span>
+                            <span class="badge badge-warning badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full bg-warning"></span> ${card.labels[1]}</span>
+                        </div>
+                        <div class="border-t border-base-200 pt-3 flex flex-col gap-1">
+                            <span class="text-[10px] text-base-content/50">#${card.id} by ${card.author}</span>
+                            <span class="text-[10px] text-base-content/50">1/15/2024</span>
+                        </div>
+                    </div>
+                </div>
+        `
+        //4. Append into container
+        cardContainer.append(cardDiv);
+    }
+};
+loadCards();
