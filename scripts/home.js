@@ -25,8 +25,8 @@ const displayCard = (cards) => {
                         <div class="flex justify-between items-start mb-2">
                             <span>
   ${card.status === "open"
-                ? '<img src="../assets/Open-Status.png" alt="Open-Status">'
-                : '<img src="../assets/Closed-Status.png" alt="Closed-Status">'
+                ? '<img src="https://i.ibb.co.com/996WbFt5/Open-Status.png" alt="Open-Status">'
+                : '<img src="https://i.ibb.co.com/DHS8FFtP/Closed-Status.png" alt="Closed-Status">'
             }
 </span>
                             <span class="badge badge-soft uppercase ${card.priority === 'high' ? 'badge-error' :
@@ -113,8 +113,8 @@ const displayOpenCard = (cards) => {
                         <div class="flex justify-between items-start mb-2">
                             <span>
   ${card.status === "open"
-                ? '<img src="../assets/Open-Status.png" alt="Open-Status">'
-                : '<img src="../assets/Closed-Status.png" alt="Closed-Status">'
+                ? '<img src="https://i.ibb.co.com/996WbFt5/Open-Status.png" alt="Open-Status">'
+                : '<img src="https://i.ibb.co.com/DHS8FFtP/Closed-Status.png" alt="Closed-Status">'
             }
 </span>
                             <span class="badge badge-soft uppercase ${card.priority === 'high' ? 'badge-error' :
@@ -201,8 +201,8 @@ const displayClosedCard = (cards) => {
                         <div class="flex justify-between items-start mb-2">
                             <span>
   ${card.status === "open"
-                ? '<img src="../assets/Open-Status.png" alt="Open-Status">'
-                : '<img src="../assets/Closed-Status.png" alt="Closed-Status">'
+                ? '<img src="https://i.ibb.co.com/996WbFt5/Open-Status.png" alt="Open-Status">'
+                : '<img src="https://i.ibb.co.com/DHS8FFtP/Closed-Status.png" alt="Closed-Status">'
             }
 </span>
                             <span class="badge badge-soft uppercase ${card.priority === 'high' ? 'badge-error' :
