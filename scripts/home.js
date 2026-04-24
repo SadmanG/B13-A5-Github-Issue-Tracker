@@ -1,25 +1,28 @@
-const loadCards=()=>{
+const loadCards = () => {
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues") // Promise of Response
-    .then(res=> res.json()) // Promise of json data
-    .then(json => displayCard(json.data));
+        .then(res => res.json()) // Promise of json data
+        .then(json => displayCard(json.data));
 };
 
-const displayCard = (cards) =>{
+const displayCard = (cards) => {
     // 1. Get the container & empty
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
 
     // 2. Get into every cards
-    for(let card of cards){
+    for (let card of cards) {
         //3. Create Element
         const cardDiv = document.createElement("div");
         cardDiv.innerHTML = `
         <div class="card bg-base-100 border border-base-300 shadow-sm hover:shadow-md transition-shadow">
                     <div class="card-body p-5">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="badge badge-success badge-outline badge-xs p-2">
-                                <span class="w-2 h-2 rounded-full bg-success mr-1"></span>
-                            </span>
+                            <span class="badge p-2">
+  ${card.status === "open"
+                ? '<img src="assets/Open-Status.png" alt="Open-Status">'
+                : '<img src="assets/Closed-Status.png" alt="Closed-Status">'
+            }
+</span>
                             <span class="badge badge-error badge-outline text-[10px] h-5">${card.priority}</span>
                         </div>
                         <h3 class="font-bold text-sm leading-tight mb-2">${card.title}</h3>
@@ -43,16 +46,16 @@ const displayCard = (cards) =>{
 };
 loadCards();
 
-const loadWordDetail = async(id)=>{
+const loadWordDetail = async (id) => {
     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
     const res = await fetch(url);
     const details = await res.json();
     displayWordDetail(details.data);
 };
 
-const displayWordDetail=(word)=>{
+const displayWordDetail = (word) => {
     const detailsBox = document.getElementById("details-container");
-    detailsBox.innerHTML=`
+    detailsBox.innerHTML = `
     <div class="">
         <h2 class="text-2xl font-bold">${word.word} (<i class="fa-solid fa-microphone-lines"></i>:${word.pronunciation})</h2>
       </div>
