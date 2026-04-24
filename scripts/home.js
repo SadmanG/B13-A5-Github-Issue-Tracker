@@ -23,7 +23,7 @@ const displayCard = (cards) => {
                 : '<img src="../assets/Closed-Status.png" alt="Closed-Status">'
             }
 </span>
-                            <span class="badge badge-soft ${card.priority === 'high' ? 'badge-error' :
+                            <span class="badge badge-soft uppercase ${card.priority === 'high' ? 'badge-error' :
                 card.priority === 'low' ? 'badge-success' :
                     'badge-warning'
             } text-[10px] h-5">
@@ -35,8 +35,33 @@ const displayCard = (cards) => {
                             ${card.description}
                         </p>
                         <div class="flex gap-2 mb-6">
-                            <span class="badge badge-error badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full bg-error"></span> ${card.labels[0]}</span>
-                            <span class="badge badge-warning badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full bg-warning"></span> ${card.labels[1]}</span>
+                            <span class="badge
+                            uppercase badge-outline
+                            ${card.labels[0] === 'bug' ? 'badge-error' :
+                card.labels[0] === 'enhancement' ? 'badge-success' :
+                    card.labels[0] === 'help wanted' ?
+                    'badge-warning' : 'badge-info'
+            }
+                            badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full
+                            ${card.labels[0] === 'bug' ? 'bg-error' :
+                card.labels[0] === 'enhancement' ? 'bg-success' :
+                    card.labels[0] === 'help wanted' ?
+                    'bg-warning' : 'bg-info'
+            }
+                            "></span> ${card.labels[0]}</span>
+                            ${card.labels[1] ? `<span class="badge badge-outline uppercase
+                            ${card.labels[1] === 'bug' ? 'badge-error' :
+                card.labels[1] === 'enhancement' ? 'badge-success' :
+                    card.labels[1] === 'help wanted' ?
+                    'badge-warning' : 'badge-info'
+            }
+                            badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full
+                            ${card.labels[1] === 'bug' ? 'bg-error' :
+                card.labels[1] === 'enhancement' ? 'bg-success' :
+                    card.labels[1] === 'help wanted' ?
+                    'bg-warning' : 'bg-info'
+            }
+                            "></span> ${card.labels[1]}</span>` : ''}
                         </div>
                         <div class="border-t border-base-200 pt-3 flex flex-col gap-1">
                             <span class="text-[10px] text-base-content/50">#${card.id} by ${card.author}</span>
