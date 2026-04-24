@@ -14,7 +14,11 @@ const displayCard = (cards) => {
         //3. Create Element
         const cardDiv = document.createElement("div");
         cardDiv.innerHTML = `
-        <div class="card bg-base-100 border border-base-300 shadow-sm hover:shadow-md transition-shadow">
+        <div class="border border-base-300 rounded-2xl border-t-10 border-l-0 border-r-0 border-b-0 
+        ${card.status === "open"
+                ? 'border-green-600'
+                : 'border-purple-600'}">
+         <div class="card bg-base-100 border border-base-300 shadow-sm hover:shadow-md transition-shadow">
                     <div onclick="loadCardDetail(${card.id})" class="card-body p-5">
                         <div class="flex justify-between items-start mb-2">
                             <span>
@@ -69,6 +73,7 @@ const displayCard = (cards) => {
                         </div>
                     </div>
                 </div>
+        </div>
         `
         //4. Append into container
         cardContainer.append(cardDiv);
