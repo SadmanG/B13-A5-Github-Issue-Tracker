@@ -19,8 +19,8 @@ const displayCard = (cards) => {
                         <div class="flex justify-between items-start mb-2">
                             <span class="badge p-2">
   ${card.status === "open"
-                ? '<img src="assets/Open-Status.png" alt="Open-Status">'
-                : '<img src="assets/Closed-Status.png" alt="Closed-Status">'
+                ? '<img src="../assets/Open-Status.png" alt="Open-Status">'
+                : '<img src="../assets/Closed-Status .png" alt="Closed-Status">'
             }
 </span>
                             <span class="badge badge-error badge-outline text-[10px] h-5">${card.priority}</span>
