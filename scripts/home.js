@@ -36,7 +36,7 @@ const displayCard = (cards) => {
                         </p>
                         <div class="flex gap-2 mb-6">
                             <span class="badge
-                            uppercase badge-outline
+                            uppercase badge-soft
                             ${card.labels[0] === 'bug' ? 'badge-error' :
                 card.labels[0] === 'enhancement' ? 'badge-success' :
                     card.labels[0] === 'help wanted' ?
@@ -49,7 +49,7 @@ const displayCard = (cards) => {
                         'bg-warning' : 'bg-info'
             }
                             "></span> ${card.labels[0]}</span>
-                            ${card.labels[1] ? `<span class="badge badge-outline uppercase
+                            ${card.labels[1] ? `<span class="badge badge-soft uppercase
                             ${card.labels[1] === 'bug' ? 'badge-error' :
                     card.labels[1] === 'enhancement' ? 'badge-success' :
                         card.labels[1] === 'help wanted' ?
@@ -92,7 +92,10 @@ const displayCardDetail = (card) => {
     
     <!-- Status & Info Row -->
     <div class="flex items-center gap-2 mb-6">
-      <div id="modal-status" class="uppercase">
+      <div id="modal-status" class="uppercase badge rounded-xl text-white ${card.status === "open"
+                ? 'bg-[#00A96E]'
+                : 'bg-[#A855F7]'
+            }">
          ${card.status}
       </div>
       <span class="text-gray-500 text-sm">• Opened by <span class="font-semibold text-gray-800" id="modal-author">${card.author}</span> • 22/02/2026</span>
@@ -100,12 +103,33 @@ const displayCardDetail = (card) => {
 
     <!-- Labels Row -->
     <div id="modal-labels" class="flex gap-2 mb-8">
-      <span class="badge badge-outline badge-error p-3 gap-1 uppercase text-[10px] font-bold opacity-80">
-        <img src="assets/bug-icon.png" class="w-3 h-3" alt=""> ${card.labels[0]}
-      </span>
-      <span class="badge badge-outline badge-warning p-3 gap-1 uppercase text-[10px] font-bold opacity-80">
-        <img src="assets/help-icon.png" class="w-3 h-3" alt=""> ${card.labels[1]}
-      </span>
+      <span class="badge
+                            uppercase badge-soft
+                            ${card.labels[0] === 'bug' ? 'badge-error' :
+                card.labels[0] === 'enhancement' ? 'badge-success' :
+                    card.labels[0] === 'help wanted' ?
+                        'badge-warning' : 'badge-info'
+            }
+                            badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full
+                            ${card.labels[0] === 'bug' ? 'bg-error' :
+                card.labels[0] === 'enhancement' ? 'bg-success' :
+                    card.labels[0] === 'help wanted' ?
+                        'bg-warning' : 'bg-info'
+            }
+                            "></span> ${card.labels[0]}</span>
+                            ${card.labels[1] ? `<span class="badge badge-soft uppercase
+                            ${card.labels[1] === 'bug' ? 'badge-error' :
+                    card.labels[1] === 'enhancement' ? 'badge-success' :
+                        card.labels[1] === 'help wanted' ?
+                            'badge-warning' : 'badge-info'
+                }
+                            badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full
+                            ${card.labels[1] === 'bug' ? 'bg-error' :
+                    card.labels[1] === 'enhancement' ? 'bg-success' :
+                        card.labels[1] === 'help wanted' ?
+                            'bg-warning' : 'bg-info'
+                }
+                            "></span> ${card.labels[1]}</span>` : ''}
     </div>
 
     <!-- Description -->
@@ -117,11 +141,16 @@ const displayCardDetail = (card) => {
     <div class="grid grid-cols-2 gap-8 mb-4">
       <div>
         <p class="text-gray-400 text-sm mb-2">Assignee:</p>
-        <p class="font-bold text-lg" id="modal-assignee">${card.assignee}</p>
+        <p class="font-bold text-lg" id="modal-assignee">${card.assignee === "" ? "None" : card.assignee}</p>
       </div>
       <div>
         <p class="text-gray-400 text-sm mb-2">Priority:</p>
-        <span class="badge badge-error h-8 px-4 text-white font-bold uppercase text-xs" id="modal-priority">${card.priority}</span>
+        <span class="badge
+        ${card.priority === 'high' ? 'badge-error' :
+                card.priority === 'low' ? 'badge-success' :
+                    'badge-warning'
+            } 
+        h-8 px-4 text-white font-bold uppercase text-xs rounded-full" id="modal-priority">${card.priority}</span>
       </div>
     </div>
 
