@@ -17,13 +17,18 @@ const displayCard = (cards) => {
         <div class="card bg-base-100 border border-base-300 shadow-sm hover:shadow-md transition-shadow">
                     <div class="card-body p-5">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="badge p-2">
+                            <span>
   ${card.status === "open"
                 ? '<img src="../assets/Open-Status.png" alt="Open-Status">'
-                : '<img src="../assets/Closed-Status .png" alt="Closed-Status">'
+                : '<img src="../assets/Closed-Status.png" alt="Closed-Status">'
             }
 </span>
-                            <span class="badge badge-error badge-outline text-[10px] h-5">${card.priority}</span>
+                            <span class="badge badge-soft ${card.priority === 'high' ? 'badge-error' :
+                card.priority === 'low' ? 'badge-success' :
+                    'badge-warning'
+            } text-[10px] h-5">
+  ${card.priority}
+</span>
                         </div>
                         <h3 class="font-bold text-sm leading-tight mb-2">${card.title}</h3>
                         <p class="text-xs text-base-content/70 line-clamp-2 mb-4">
