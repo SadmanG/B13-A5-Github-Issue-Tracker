@@ -15,7 +15,7 @@ const displayCard = (cards) => {
         const cardDiv = document.createElement("div");
         cardDiv.innerHTML = `
         <div class="card bg-base-100 border border-base-300 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="card-body p-5">
+                    <div onclick="loadCardDetail(${card.id})" class="card-body p-5">
                         <div class="flex justify-between items-start mb-2">
                             <span>
   ${card.status === "open"
@@ -40,27 +40,27 @@ const displayCard = (cards) => {
                             ${card.labels[0] === 'bug' ? 'badge-error' :
                 card.labels[0] === 'enhancement' ? 'badge-success' :
                     card.labels[0] === 'help wanted' ?
-                    'badge-warning' : 'badge-info'
+                        'badge-warning' : 'badge-info'
             }
                             badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full
                             ${card.labels[0] === 'bug' ? 'bg-error' :
                 card.labels[0] === 'enhancement' ? 'bg-success' :
                     card.labels[0] === 'help wanted' ?
-                    'bg-warning' : 'bg-info'
+                        'bg-warning' : 'bg-info'
             }
                             "></span> ${card.labels[0]}</span>
                             ${card.labels[1] ? `<span class="badge badge-outline uppercase
                             ${card.labels[1] === 'bug' ? 'badge-error' :
-                card.labels[1] === 'enhancement' ? 'badge-success' :
-                    card.labels[1] === 'help wanted' ?
-                    'badge-warning' : 'badge-info'
-            }
+                    card.labels[1] === 'enhancement' ? 'badge-success' :
+                        card.labels[1] === 'help wanted' ?
+                            'badge-warning' : 'badge-info'
+                }
                             badge-sm text-[10px] gap-1 opacity-70"><span class="w-1.5 h-1.5 rounded-full
                             ${card.labels[1] === 'bug' ? 'bg-error' :
-                card.labels[1] === 'enhancement' ? 'bg-success' :
-                    card.labels[1] === 'help wanted' ?
-                    'bg-warning' : 'bg-info'
-            }
+                    card.labels[1] === 'enhancement' ? 'bg-success' :
+                        card.labels[1] === 'help wanted' ?
+                            'bg-warning' : 'bg-info'
+                }
                             "></span> ${card.labels[1]}</span>` : ''}
                         </div>
                         <div class="border-t border-base-200 pt-3 flex flex-col gap-1">
@@ -76,31 +76,61 @@ const displayCard = (cards) => {
 };
 loadCards();
 
-const loadWordDetail = async (id) => {
+const loadCardDetail = async (id) => {
     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
     const res = await fetch(url);
     const details = await res.json();
-    displayWordDetail(details.data);
+    displayCardDetail(details.data);
 };
 
-const displayWordDetail = (word) => {
+const displayCardDetail = (card) => {
+    console.log(card);
     const detailsBox = document.getElementById("details-container");
     detailsBox.innerHTML = `
-    <div class="">
-        <h2 class="text-2xl font-bold">${word.word} (<i class="fa-solid fa-microphone-lines"></i>:${word.pronunciation})</h2>
+    <!-- Header -->
+    <h2 class="text-3xl font-bold mb-4" id="modal-title">${card.title}</h2>
+    
+    <!-- Status & Info Row -->
+    <div class="flex items-center gap-2 mb-6">
+      <div id="modal-status" class="uppercase">
+         ${card.status}
       </div>
-      <div class="">
-        <h2 class="text-2xl font-bold">Meaning</h2>
-        <p>${word.meaning}</p>
+      <span class="text-gray-500 text-sm">• Opened by <span class="font-semibold text-gray-800" id="modal-author">${card.author}</span> • 22/02/2026</span>
+    </div>
+
+    <!-- Labels Row -->
+    <div id="modal-labels" class="flex gap-2 mb-8">
+      <span class="badge badge-outline badge-error p-3 gap-1 uppercase text-[10px] font-bold opacity-80">
+        <img src="assets/bug-icon.png" class="w-3 h-3" alt=""> ${card.labels[0]}
+      </span>
+      <span class="badge badge-outline badge-warning p-3 gap-1 uppercase text-[10px] font-bold opacity-80">
+        <img src="assets/help-icon.png" class="w-3 h-3" alt=""> ${card.labels[1]}
+      </span>
+    </div>
+
+    <!-- Description -->
+    <p class="text-gray-600 leading-relaxed mb-10" id="modal-description">
+      ${card.description}
+    </p>
+
+    <!-- Details Grid -->
+    <div class="grid grid-cols-2 gap-8 mb-4">
+      <div>
+        <p class="text-gray-400 text-sm mb-2">Assignee:</p>
+        <p class="font-bold text-lg" id="modal-assignee">${card.assignee}</p>
       </div>
-      <div class="">
-        <h2 class="text-2xl font-bold">Example</h2>
-        <p>${word.sentence}</p>
+      <div>
+        <p class="text-gray-400 text-sm mb-2">Priority:</p>
+        <span class="badge badge-error h-8 px-4 text-white font-bold uppercase text-xs" id="modal-priority">${card.priority}</span>
       </div>
-      <div class="">
-        <h2 class="text-2xl font-bold">Synonyms</h2>
-        <div class="">${createElements(word.synonyms)}</div>
-      </div>
+    </div>
+
+    <!-- Action Button -->
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-primary bg-blue-700 border-none px-8 text-white hover:bg-blue-800">Close</button>
+      </form>
+    </div>
     `;
-    document.getElementById("word_modal").showModal();
+    document.getElementById("card_modal").showModal();
 };
